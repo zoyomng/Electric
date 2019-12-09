@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#2A2D4C</color>
+    <color name="colorPrimaryDark">#2A2D4C</color>
+    <color name="colorAccent">#2A2D4C</color>
+
+    <color name="status_layout_manager_background_color">#EBEBEB</color>
+    <color name="status_layout_manager_tip_text_color">#BFBFBF</color>
+    <color name="status_layout_manager_click_view_text_color">#0084FF</color>
+
+    <color name="defaultTextColor">#FFFFFF</color>
+    <color name="errorColor">#D50000</color>
+    <color name="infoColor">#3F51B5</color>
+    <color name="successColor">#388E3C</color>
+    <color name="warningColor">#FFA900</color>
+    <color name="normalColor">#353A3E</color>
+    <color name="color_ff3b354f">#ff3b354f</color>
+    <color name="color_ff2a2d4c">#ff2a2d4c</color>
+    <color name="color_D9D9D9">#D9D9D9</color>
 </resources>

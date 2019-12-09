@@ -1,16 +1,14 @@
 package com.dtelec.electric.view;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.transition.Transition;
-import android.transition.TransitionInflater;
 
-import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
-
+import com.dtelec.electric.BR;
 import com.dtelec.electric.R;
 import com.dtelec.electric.viewModel.MainViewModel;
-import com.zoyo.core.mvvm.base.BaseActivity;
+
+import com.dtelec.core.mvvm.base.BaseActivity;
+
+import static androidx.navigation.Navigation.findNavController;
 
 
 public class MainActivity extends BaseActivity<MainViewModel> {
@@ -31,10 +29,8 @@ public class MainActivity extends BaseActivity<MainViewModel> {
         return R.id.contentLayout;
     }
 
-
     @Override
     public void initData() {
-
 
     }
 
@@ -42,5 +38,10 @@ public class MainActivity extends BaseActivity<MainViewModel> {
     protected void onStatusRefresh() {
         super.onStatusRefresh();
         viewModel.request();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        return findNavController(this, R.id.fragment_nav_host).navigateUp();
     }
 }

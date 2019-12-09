@@ -1,8 +1,8 @@
 package com.dtelec.electric.model;
 
-import com.zoyo.core.common.net.Response;
 
 import io.reactivex.Flowable;
+import retrofit2.Response;
 import retrofit2.http.GET;
 
 public interface API {

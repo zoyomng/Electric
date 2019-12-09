@@ -2,10 +2,10 @@ package com.dtelec.electric.app;
 
 import com.dtelec.electric.BuildConfig;
 import com.dtelec.electric.model.API;
-import com.zoyo.core.BaseApplication;
-import com.zoyo.core.common.net.RetrofitManager;
 
-public class MyApplication extends BaseApplication {
+import com.dtelec.core.common.net.RetrofitManager;
+
+public class MyApplication extends com.dtelec.MyApplication {
 
     MyApplication instance;
 
