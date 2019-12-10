@@ -30,5 +30,8 @@
     <string name="closet_2">2#</string>
     <string name="closet_3">3#</string>
     <string name="closet_4">4#</string>
+    <string name="high_elec_closet_state">高压柜状态</string>
+    <string name="breaker_layout">断路器位置</string>
+    <string name="breaker_state">断路器状态</string>
 
 </resources>

@@ -20,7 +20,7 @@ public class MainFragment extends BaseFragment<MainViewModel> {
     private static final String[] tabNames = {"机柜布置", "操作记录"};
 
     @Override
-    protected int initVariableId() {
+    protected int getViewModelId() {
         return BR.viewModel;
     }
 
@@ -30,7 +30,12 @@ public class MainFragment extends BaseFragment<MainViewModel> {
     }
 
     @Override
-    protected void initViewObservable() {
+    public void initData() {
+
+    }
+
+    @Override
+    public void initViewObservable() {
         FragmentMainBinding dataBinding = (FragmentMainBinding) this.dataBinding;
         TabLayout tabLayout = dataBinding.tabLayout;
         ViewPager2 viewPager = dataBinding.viewPager;

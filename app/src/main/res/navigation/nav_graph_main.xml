@@ -10,4 +10,16 @@
         android:id="@+id/mainFragment"
         android:name="com.dtelec.electric.view.MainFragment"
         android:label="MainFragment" />
+    <fragment
+        android:id="@+id/closetLayoutFragment"
+        android:name="com.dtelec.electric.view.ClosetLayoutFragment"
+        android:label="ClosetLayoutFragment" >
+        <action
+            android:id="@+id/action_closetLayoutFragment_to_highElecDetailFragment"
+            app:destination="@id/highElecDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/highElecDetailFragment"
+        android:name="com.dtelec.electric.view.HighElecDetailActivity"
+        android:label="HighElecDetailFragment" />
 </navigation>

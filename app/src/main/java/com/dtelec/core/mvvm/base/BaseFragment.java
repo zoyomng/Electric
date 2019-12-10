@@ -12,9 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.dtelec.core.mvvm.utils.TypeUtil;
+import com.trello.rxlifecycle2.components.support.RxFragment;
 
 
-public abstract class BaseFragment<VM extends BaseViewModel> extends Fragment implements IBaseView {
+public abstract class BaseFragment<VM extends BaseViewModel> extends RxFragment implements IBaseView {
 
     protected ViewDataBinding dataBinding;
     private VM viewModel;
@@ -30,34 +31,27 @@ public abstract class BaseFragment<VM extends BaseViewModel> extends Fragment im
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViewDataBinding();
-        initData();
         initViewObservable();
+        initData();
     }
 
 
     protected void initViewDataBinding() {
-        int viewModelId = initVariableId();
+        int viewModelId = getViewModelId();
         viewModel = initViewModel();
         dataBinding.setVariable(viewModelId, viewModel);
         getLifecycle().addObserver(viewModel);
+        dataBinding.setLifecycleOwner(this);
+        viewModel.injectLifecycleProvider(this);
     }
 
     private VM initViewModel() {
         return (VM) ViewModelProviders.of(this).get(TypeUtil.getClassType(this, 0, BaseViewModel.class));
     }
 
-    protected abstract int initVariableId();
+    protected abstract int getViewModelId();
 
     protected abstract int getLayoutId(Bundle savedInstanceState);
-
-
-    @Override
-    public void initData() {
-
-    }
-
-    protected abstract void initViewObservable();
-
 
     @Override
     public void onDestroyView() {

@@ -11,14 +11,12 @@ import com.dtelec.electric.model.repository.MainRepository;
 
 public class MainViewModel extends BaseViewModel<MainRepository> {
 
-
     public MutableLiveData<Boolean> isShowHighlectricCloset = new MutableLiveData<>();
-    public MutableLiveData<String> content = new MutableLiveData<>();
+    public String highElecDetailTitle = "高压柜详情";
 
     public MainViewModel(@NonNull Application application) {
         super(application);
         isShowHighlectricCloset.setValue(false);
-        content.setValue("a");
         request();
     }
 
@@ -32,8 +30,6 @@ public class MainViewModel extends BaseViewModel<MainRepository> {
     }
 
     public void show() {
-        isShowHighlectricCloset.postValue(true);
-        content.setValue("afd ");
+        isShowHighlectricCloset.setValue(!isShowHighlectricCloset.getValue());
     }
-
 }

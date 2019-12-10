@@ -1,15 +1,17 @@
 package com.dtelec.electric.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.annotation.Nullable;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.dtelec.core.mvvm.base.BaseFragment;
-import com.dtelec.core.mvvm.utils.ScreenSizeUtil;
 import com.dtelec.electric.BR;
 import com.dtelec.electric.R;
 import com.dtelec.electric.databinding.FragmentClosetLayoutBinding;
@@ -23,11 +25,11 @@ import java.util.List;
 /**
  * Copyright (c) dtelec, Inc All Rights Reserved.
  */
-public class ClosetLayoutFragment extends BaseFragment<MainViewModel> {
+public class ClosetLayoutFragment extends BaseFragment<MainViewModel> implements View.OnClickListener {
 
 
     @Override
-    protected int initVariableId() {
+    protected int getViewModelId() {
         return BR.viewModel;
     }
 
@@ -37,8 +39,17 @@ public class ClosetLayoutFragment extends BaseFragment<MainViewModel> {
     }
 
     @Override
-    protected void initViewObservable() {
+    public void initData() {
+
+    }
+
+    @Override
+    public void initViewObservable() {
+
         FragmentClosetLayoutBinding dataBinding = (FragmentClosetLayoutBinding) this.dataBinding;
+        dataBinding.setClickListener(this);
+
+
         final SwipeRefreshLayout swipeRefreshLayout = dataBinding.swipeRefreshLayout;
         View includeLowElecCloset = dataBinding.includeLowElecCloset;
         View includeHighElecCloset = dataBinding.includeHighElecCloset;
@@ -68,5 +79,10 @@ public class ClosetLayoutFragment extends BaseFragment<MainViewModel> {
                 swipeRefreshLayout.stopNestedScroll();
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        startActivity(new Intent(getContext(),HighElecDetailActivity.class));
     }
 }

@@ -23,5 +23,23 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="LeftTextHighElecClosetDetail">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:background">#49445e</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="RightTextHighElecClosetDetail">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#D9D9D9</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
 
 </resources>

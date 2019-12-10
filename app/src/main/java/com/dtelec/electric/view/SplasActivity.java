@@ -30,7 +30,7 @@ public class SplasActivity extends BaseActivity<MainViewModel> {
     }
 
     @Override
-    protected int initViewModelId() {
+    protected int getViewModelId() {
         return BR.viewModel;
     }
 
@@ -41,6 +41,11 @@ public class SplasActivity extends BaseActivity<MainViewModel> {
 
     @Override
     public void initData() {
+
+    }
+
+    @Override
+    public void initViewObservable() {
 
     }
 

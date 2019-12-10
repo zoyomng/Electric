@@ -14,9 +14,10 @@ import com.dtelec.core.common.constants.Constants;
 import com.dtelec.core.common.multistatusmanager.MultiStatusManager;
 import com.dtelec.core.common.multistatusmanager.OnStatusChildClickListener;
 import com.dtelec.core.mvvm.utils.TypeUtil;
+import com.dtelec.electric.R;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
-public abstract class BaseActivity<VM extends BaseViewModel> extends RxAppCompatActivity implements IBaseView {
+public abstract class BaseActivity<VM extends BaseViewModel> extends RxAppCompatActivity implements IBaseView, View.OnClickListener {
 
     public VM viewModel;
     public ViewDataBinding dataBinding;
@@ -30,6 +31,8 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends RxAppCompat
         initViewDataBinding(savedInstanceState);
         //初始化多状态管理器
         setupMultiStatusManager();
+        //初始化observe
+        initViewObservable();
         //初始化数据
         initData();
 
@@ -51,7 +54,7 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends RxAppCompat
         viewModel = initViewModel();
 
         //关联ViewModel
-        int viewModelId = initViewModelId();
+        int viewModelId = getViewModelId();
         dataBinding.setVariable(viewModelId, viewModel);
         //让ViewModel拥有View的生命周期感应
         getLifecycle().addObserver(viewModel);
@@ -155,12 +158,13 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends RxAppCompat
      * <p>
      * 以上抽取相当于在继承BaseActivity的类中:DataBinding.setViewModel(viewModel)
      */
-    protected abstract int initViewModelId();
-
+    protected abstract int getViewModelId();
 
     @Override
-    public void initData() {
-
+    public void onClick(View v) {
+        if (R.id.iv_back == v.getId()) {
+            finish();
+        }
     }
 
     @Override
