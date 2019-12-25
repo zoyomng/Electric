@@ -7,7 +7,7 @@
     android:layout_height="475dp"
     android:layout_marginTop="40dp"
     android:layout_marginBottom="64dp"
-    android:background="@mipmap/bg_high_electric_closet">
+    android:background="@drawable/bg_high_electric_closet">
 
 
     <ImageView
@@ -19,7 +19,7 @@
         app:layout_constraintStart_toEndOf="@+id/iv_state_9"
         app:layout_constraintTop_toTopOf="@+id/iv_state_4"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/ic_state_gray" />
+        app:srcCompat="@drawable/ic_state_gray" />
 
     <ImageView
         android:id="@+id/iv_state_7"
@@ -30,7 +30,7 @@
         app:layout_constraintStart_toEndOf="@+id/iv_state_6"
         app:layout_constraintTop_toTopOf="@+id/iv_state_4"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/ic_state_gray" />
+        app:srcCompat="@drawable/ic_state_gray" />
 
     <ImageView
         android:id="@+id/iv_state_8"
@@ -41,7 +41,7 @@
         app:layout_constraintStart_toEndOf="@+id/iv_state_7"
         app:layout_constraintTop_toTopOf="@+id/iv_state_4"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/ic_state_gray" />
+        app:srcCompat="@drawable/ic_state_gray" />
 
     <ImageView
         android:id="@+id/iv_state_9"
@@ -52,7 +52,7 @@
         app:layout_constraintStart_toEndOf="@+id/iv_state_8"
         app:layout_constraintTop_toTopOf="@+id/iv_state_4"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/ic_state_gray" />
+        app:srcCompat="@drawable/ic_state_gray" />
 
     <ImageView
         android:id="@+id/iv_state_6"
@@ -62,7 +62,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/iv_state_4"
         app:layout_constraintStart_toEndOf="@+id/iv_state_5"
         app:layout_constraintTop_toTopOf="@+id/iv_state_4"
-        app:srcCompat="@mipmap/ic_state_gray" />
+        app:srcCompat="@drawable/ic_state_gray" />
 
     <ImageView
         android:id="@+id/iv_state_5"
@@ -72,7 +72,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/iv_state_4"
         app:layout_constraintStart_toEndOf="@+id/iv_state_4"
         app:layout_constraintTop_toTopOf="@+id/iv_state_4"
-        app:srcCompat="@mipmap/ic_state_gray" />
+        app:srcCompat="@drawable/ic_state_gray" />
 
     <ImageView
         android:id="@+id/iv_state_4"
@@ -82,7 +82,7 @@
         android:layout_marginTop="115dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_state_gray" />
+        app:srcCompat="@drawable/ic_state_gray" />
 
     <ImageView
         android:id="@+id/iv_state_3"
@@ -93,7 +93,7 @@
         app:layout_constraintStart_toEndOf="@+id/iv_state_2"
         app:layout_constraintTop_toTopOf="@+id/iv_state_1"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/ic_state_gray" />
+        app:srcCompat="@drawable/ic_state_gray" />
 
     <ImageView
         android:id="@+id/iv_state_2"
@@ -103,7 +103,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/iv_state_1"
         app:layout_constraintStart_toEndOf="@+id/iv_state_1"
         app:layout_constraintTop_toTopOf="@+id/iv_state_1"
-        app:srcCompat="@mipmap/ic_state_gray" />
+        app:srcCompat="@drawable/ic_state_gray" />
 
     <ImageView
         android:id="@+id/iv_state_1"
@@ -113,5 +113,5 @@
         android:layout_marginTop="70dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_state_gray" />
+        app:srcCompat="@drawable/ic_state_gray" />
 </androidx.constraintlayout.widget.ConstraintLayout>

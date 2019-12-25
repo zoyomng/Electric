@@ -4,7 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.dtelec.electric.view.ClosetLayoutFragment;
+import com.dtelec.electric.view.HighClosetLayoutFragment;
+import com.dtelec.electric.view.LowClosetLayoutFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,11 +15,11 @@ import java.util.Map;
  */
 public class TabPagerAdapter extends FragmentStateAdapter {
 
-    private static final int CLOSET_LAYOUT = 0;
-    private static final int OPERATE_RECORD = 1;
+    private static final int LOW_CLOSET_LAYOUT = 0;
+    private static final int HIGH_CLOSET_LAYOUT = 1;
     private Map<Integer, Fragment> tabFragments = new HashMap<Integer, Fragment>() {{
-        put(CLOSET_LAYOUT, new ClosetLayoutFragment());
-//        put(OPERATE_RECORD, new OperateRecordFragment());
+        put(LOW_CLOSET_LAYOUT, new LowClosetLayoutFragment());
+        put(HIGH_CLOSET_LAYOUT, new HighClosetLayoutFragment());
     }};
 
     public TabPagerAdapter(@NonNull Fragment fragment) {

@@ -26,7 +26,7 @@
             android:layout_height="60dp"
             android:onClick="@{clickListener}"
             android:scaleType="center"
-            app:srcCompat="@mipmap/ic_arrow_left" />
+            app:srcCompat="@drawable/ic_arrow_left" />
 
         <TextView
             android:id="@+id/textView3"

@@ -74,7 +74,7 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends RxAppCompat
         multiStatusManager = new MultiStatusManager.Builder(contentLayout == null ? findViewById(android.R.id.content) : contentLayout)
                 .setDefaultErrorClickViewVisible(true)
                 .setDefaultErrorClickViewText("reload")
-                .setDefaultLayoutsBackgroundColor(0xffff0000)
+                .setDefaultLayoutsBackgroundColor(0xaa000000)
                 .setOnStatusChildClickListener(new OnStatusChildClickListener() {
                     @Override
                     public void onEmptyChildClick(View view) {

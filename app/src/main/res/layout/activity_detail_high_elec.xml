@@ -34,7 +34,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/tv_high_elec_closet"
@@ -46,9 +46,9 @@
                 <TextView
                     android:id="@+id/tv_high_elec_state"
                     style="@style/RightTextHighElecClosetDetail"
+                    android:text="@{viewModel.highClosetBean.remote?@string/remote:@string/local}"
                     app:layout_constraintBaseline_toBaselineOf="@+id/tv_high_elec_closet"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:text="远控" />
+                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <include
                     android:id="@+id/line1"
@@ -70,7 +70,10 @@
                     style="@style/RightTextHighElecClosetDetail"
                     app:layout_constraintBaseline_toBaselineOf="@+id/tv_breaker"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:text="远控" />
+                    app:state1="@{viewModel.highClosetBean.testStation}"
+                    app:state2="@{viewModel.highClosetBean.workStation}"
+                    app:tip1="@{@string/test}"
+                    app:tip2="@{@string/work}" />
 
                 <include
                     android:id="@+id/line2"
@@ -83,6 +86,8 @@
                 <TextView
                     android:id="@+id/tv_breaker2"
                     style="@style/LeftTextHighElecClosetDetail"
+                    android:clickable="@{viewModel.highClosetBean.remote}"
+                    android:onClick="@{clickListener}"
                     android:text="@string/breaker_state"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_breaker" />
@@ -90,28 +95,37 @@
                 <TextView
                     android:id="@+id/tv_breaker_state"
                     style="@style/RightTextHighElecClosetDetail"
-                    android:drawableRight="@mipmap/ic_arrow_right"
+                    android:drawableEnd="@{viewModel.highClosetBean.remote?@drawable/ic_arrow_right:null}"
                     android:drawablePadding="10dp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/tv_breaker2"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:text="远控" />
+
+                    app:state1="@{viewModel.highClosetBean.breaker}"
+                    app:state2="@{viewModel.highClosetBean.operation}"
+                    app:tip1="@{@string/off}"
+                    app:tip2="@{@string/on}" />
 
                 <TextView
                     android:id="@+id/tv_handcart"
                     style="@style/LeftTextHighElecClosetDetail"
                     android:layout_marginTop="8dp"
-                    android:text="手车状态"
+                    android:clickable="@{viewModel.highClosetBean.remote}"
+                    android:onClick="@{clickListener}"
+                    android:text="@string/handcart_state"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_breaker2" />
 
                 <TextView
                     android:id="@+id/tv_handcart_state"
                     style="@style/RightTextHighElecClosetDetail"
-                    android:drawableRight="@mipmap/ic_arrow_right"
+                    android:drawableEnd="@{viewModel.highClosetBean.remote?@drawable/ic_arrow_right:null}"
                     android:drawablePadding="10dp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/tv_handcart"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:text="远控" />
+                    app:state1="@{viewModel.highClosetBean.testStation}"
+                    app:state2="@{viewModel.highClosetBean.workStation}"
+                    app:tip1="@{@string/hand_out}"
+                    app:tip2="@{@string/hand_in}" />
 
                 <include
                     android:id="@+id/line4"
@@ -124,7 +138,7 @@
                 <TextView
                     android:id="@+id/tv_handcart2"
                     style="@style/LeftTextHighElecClosetDetail"
-                    android:text="手车视频"
+                    android:text="@string/handcart_video"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_handcart" />
 
@@ -132,17 +146,23 @@
                     android:id="@+id/tv_knife"
                     style="@style/LeftTextHighElecClosetDetail"
                     android:layout_marginTop="8dp"
-                    android:text="接地刀状态"
+                    android:clickable="@{viewModel.highClosetBean.testStation &amp; viewModel.highClosetBean.remote}"
+                    android:onClick="@{clickListener}"
+                    android:text="@string/knife_state"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_handcart2" />
 
                 <TextView
                     android:id="@+id/tv_knife_state"
                     style="@style/RightTextHighElecClosetDetail"
+                    android:drawableEnd="@{viewModel.highClosetBean.testStation &amp; viewModel.highClosetBean.remote?@drawable/ic_arrow_right:null}"
                     android:drawablePadding="10dp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/tv_knife"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:text="远控" />
+                    app:state1="@{viewModel.highClosetBean.groundKnifeClose}"
+                    app:state2="@{viewModel.highClosetBean.groundKnifeOpen}"
+                    app:tip1="@{@string/off}"
+                    app:tip2="@{@string/on}" />
 
                 <include
                     android:id="@+id/line5"
@@ -155,7 +175,7 @@
                 <TextView
                     android:id="@+id/tv_knife2"
                     style="@style/LeftTextHighElecClosetDetail"
-                    android:text="接地刀视频"
+                    android:text="@string/knife_video"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_knife" />
 
@@ -163,14 +183,15 @@
                     android:id="@+id/tv_diagram"
                     style="@style/LeftTextHighElecClosetDetail"
                     android:layout_marginTop="8dp"
-                    android:text="电路图"
+                    android:onClick="@{clickListener}"
+                    android:text="@string/elec_diagram"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_knife2" />
 
                 <TextView
                     android:id="@+id/tv_diagram_detail"
                     style="@style/RightTextHighElecClosetDetail"
-                    android:drawableRight="@mipmap/ic_arrow_right"
+                    android:drawableEnd="@drawable/ic_arrow_right"
                     android:drawablePadding="10dp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/tv_diagram"
                     app:layout_constraintEnd_toEndOf="parent"

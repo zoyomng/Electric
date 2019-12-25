@@ -18,7 +18,7 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
 public abstract class BaseFragment<VM extends BaseViewModel> extends RxFragment implements IBaseView {
 
     protected ViewDataBinding dataBinding;
-    private VM viewModel;
+    public VM viewModel;
 
     @Nullable
     @Override

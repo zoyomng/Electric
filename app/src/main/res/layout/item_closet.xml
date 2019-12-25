@@ -5,11 +5,13 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+
         <variable
             name="model"
             type="com.dtelec.electric.model.bean.ItemBean" />
 
-        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,18 +27,20 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:text="@{model.index}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/closet_1" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_closet_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
+            app:breaker="@{model.breaker}"
             app:layout_constraintStart_toStartOf="@+id/tv_closet"
             app:layout_constraintTop_toBottomOf="@+id/tv_closet"
-            app:srcCompat="@mipmap/ic_switch_off" />
+            app:operation="@{model.operation}"
+            app:srcCompat="@drawable/ic_switch_on" />
 
 
         <ImageView
@@ -44,9 +48,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:src="@{model.workStation?@drawable/ic_state_working:@drawable/ic_state_test,default=@drawable/ic_state_working}"
             app:layout_constraintBottom_toBottomOf="@+id/iv_closet_left"
             app:layout_constraintStart_toEndOf="@+id/iv_closet_left"
-            app:srcCompat="@mipmap/ic_state_working" />
+            app:layout_constraintTop_toTopOf="@+id/iv_closet_left" />
 
         <View
             android:id="@+id/dot_view"
@@ -55,6 +60,7 @@
             android:layout_marginStart="6dp"
             android:layout_marginTop="6dp"
             android:background="@drawable/shape_dot_yellow"
+            android:visibility="@{model.remote?View.GONE:View.VISIBLE}"
             app:layout_constraintStart_toStartOf="@+id/iv_closet_left"
             app:layout_constraintTop_toTopOf="@+id/iv_closet_left" />
 

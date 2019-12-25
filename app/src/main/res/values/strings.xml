@@ -33,5 +33,18 @@
     <string name="high_elec_closet_state">高压柜状态</string>
     <string name="breaker_layout">断路器位置</string>
     <string name="breaker_state">断路器状态</string>
+    <string name="handcart_state">手车</string>
+    <string name="hand_out">摇出</string>
+    <string name="hand_in">摇入</string>
+    <string name="elec_diagram">电路图</string>
+    <string name="knife_video">接地刀视频</string>
+    <string name="knife_state">接地刀状态</string>
+    <string name="handcart_video">手车视频</string>
+    <string name="remote">远程</string>
+    <string name="local">就地</string>
+    <string name="work">工作</string>
+    <string name="test">实验</string>
+    <string name="off">分闸</string>
+    <string name="on">合闸</string>
 
 </resources>

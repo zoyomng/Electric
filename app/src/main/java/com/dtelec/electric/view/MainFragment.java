@@ -17,7 +17,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainFragment extends BaseFragment<MainViewModel> {
 
-    private static final String[] tabNames = {"机柜布置", "操作记录"};
+    private static final String[] tabNames = {"低压柜", "高压柜"};
 
     @Override
     protected int getViewModelId() {
