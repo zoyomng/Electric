@@ -10,9 +10,9 @@ import retrofit2.http.Path;
 
 public interface API {
 
-//    String BASE_URL = "http://192.168.88.90:8080/";
+    String BASE_URL = "http://192.168.88.90:8080/";
 //    String BASE_URL = "http://192.168.88.82:8080/";
-    String BASE_URL = "http://192.168.137.1:8080/";
+//    String BASE_URL = "http://192.168.137.1:8080/";
 
     //    http://192.168.88.90:8080/plc/all
     @GET("plc/all")

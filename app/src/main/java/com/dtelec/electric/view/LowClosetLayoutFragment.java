@@ -14,6 +14,13 @@ import com.dtelec.electric.R;
 import com.dtelec.electric.databinding.FragmentLowClosetLayoutBinding;
 import com.dtelec.electric.model.bean.ItemBean;
 import com.dtelec.electric.viewModel.MainViewModel;
+import com.trello.rxlifecycle2.android.FragmentEvent;
+
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Copyright (c) dtelec, Inc All Rights Reserved.
@@ -23,6 +30,7 @@ public class LowClosetLayoutFragment extends BaseFragment<MainViewModel> impleme
 
     private ItemBean itemBean;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private Disposable subscribe;
 
     @Override
     protected int getViewModelId() {
@@ -71,6 +79,7 @@ public class LowClosetLayoutFragment extends BaseFragment<MainViewModel> impleme
                 }
             }
         });
+
     }
 
     @Override
@@ -86,7 +95,20 @@ public class LowClosetLayoutFragment extends BaseFragment<MainViewModel> impleme
     @Override
     public void onResume() {
         super.onResume();
-        viewModel.request();
+
+        if (subscribe != null && !subscribe.isDisposed()) {
+            subscribe.dispose();
+        }
+
+        //轮询
+        subscribe = Observable.interval(0, 2, TimeUnit.SECONDS)
+                .compose(this.<Long>bindUntilEvent(FragmentEvent.PAUSE))
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        viewModel.request();
+                    }
+                });
     }
 
 }

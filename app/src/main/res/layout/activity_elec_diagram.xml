@@ -38,29 +38,31 @@
 
         <ImageView
             android:id="@+id/imageView6"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="40dp"
+            android:scaleType="center"
             app:drawableRes1="@{@drawable/ic_line_red_0}"
             app:drawableRes2="@{@drawable/ic_line_red_1}"
-            app:state1="@{viewModel.highClosetBean.testStation}"
-            app:state2="@{viewModel.highClosetBean.workStation}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="@+id/imageView5"
             app:layout_constraintStart_toStartOf="@+id/imageView5"
-            app:layout_constraintTop_toTopOf="@+id/imageView5" />
+            app:layout_constraintTop_toTopOf="@+id/imageView5"
+            app:state1="@{viewModel.highClosetBean.testStation}"
+            app:state2="@{viewModel.highClosetBean.workStation}" />
 
         <ImageView
             android:id="@+id/imageView7"
-            drawableRes1="@{@drawable/ic_line_red_0}"
-            drawableRes2="@{@drawable/ic_line_red_1}"
-            state1="@{viewModel.highClosetBean.testStation}"
-            state2="@{viewModel.highClosetBean.workStation}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="250dp"
+            android:scaleType="center"
+            app:drawableRes1="@{@drawable/ic_line_red_0}"
+            app:drawableRes2="@{@drawable/ic_line_red_1}"
             app:layout_constraintEnd_toEndOf="@+id/imageView5"
             app:layout_constraintStart_toStartOf="@+id/imageView5"
-            app:layout_constraintTop_toTopOf="@+id/imageView5" />
+            app:layout_constraintTop_toTopOf="@+id/imageView5"
+            app:state1="@{viewModel.highClosetBean.testStation}"
+            app:state2="@{viewModel.highClosetBean.workStation}" />
 
         <ImageView
             android:id="@+id/imageView8"

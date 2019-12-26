@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import android.widget.Toast;
+
 import androidx.lifecycle.Observer;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -15,6 +16,14 @@ import com.dtelec.electric.BR;
 import com.dtelec.electric.R;
 import com.dtelec.electric.databinding.ActivityDetailHighElecBinding;
 import com.dtelec.electric.viewModel.MainViewModel;
+import com.trello.rxlifecycle2.android.ActivityEvent;
+import com.trello.rxlifecycle2.android.FragmentEvent;
+
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Copyright (c) dtelec, Inc All Rights Reserved.
@@ -23,6 +32,7 @@ public class HighElecDetailActivity extends BaseActivity<MainViewModel> implemen
 
 
     private SwipeRefreshLayout swipeRefreshLayout;
+    private Disposable subscribe;
 
     @Override
     protected int getLayoutId(Bundle savedInstanceState) {
@@ -60,6 +70,8 @@ public class HighElecDetailActivity extends BaseActivity<MainViewModel> implemen
                 }
             }
         });
+
+
     }
 
     @Override
@@ -119,7 +131,19 @@ public class HighElecDetailActivity extends BaseActivity<MainViewModel> implemen
     @Override
     protected void onStart() {
         super.onStart();
-        viewModel.initHighClosetLayoutFragment();
+        //轮询
+        if (subscribe != null && !subscribe.isDisposed()) {
+            subscribe.dispose();
+        }
+
+        subscribe = Observable.interval(0, 2, TimeUnit.SECONDS)
+                .compose(this.<Long>bindUntilEvent(ActivityEvent.STOP))
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        viewModel.initHighClosetLayoutFragment();
+                    }
+                });
     }
 
     @Override

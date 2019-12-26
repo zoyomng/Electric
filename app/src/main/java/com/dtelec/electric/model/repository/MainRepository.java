@@ -17,7 +17,7 @@ public class MainRepository extends BaseRepository {
     private API api = retrofit.create(API.class);
 
     public void request(final MutableLiveData<Integer> statusValue, final OnDataCallback<LowClosetResponse> onDataCallback) {
-        statusValue.setValue(Constants.STAUTS_LOADING);
+        statusValue.postValue(Constants.STAUTS_LOADING);
 
         addSubscribe(api.request()
                 .compose(RxUtil.<LowClosetResponse>rxSchedulerHelper())
@@ -41,7 +41,7 @@ public class MainRepository extends BaseRepository {
     }
 
     public void write(final MutableLiveData<Integer> statusValue, String davearea, int byteValue, int bitValue, boolean state, final OnDataCallback<LowClosetResponse> onDataCallback) {
-        statusValue.setValue(Constants.STAUTS_LOADING);
+        statusValue.postValue(Constants.STAUTS_LOADING);
 
         addSubscribe(api.write(davearea, byteValue, bitValue, state)
                 .compose(RxUtil.<LowClosetResponse>rxSchedulerHelper())
@@ -65,7 +65,7 @@ public class MainRepository extends BaseRepository {
     }
 
     public void highElecWrite(final MutableLiveData<Integer> statusValue, String davearea, int byteValue, int bitValue, boolean state, final OnDataCallback<HighClosetResponse> onDataCallback) {
-        statusValue.setValue(Constants.STAUTS_LOADING);
+        statusValue.postValue(Constants.STAUTS_LOADING);
 
         addSubscribe(api.highElecWrite(davearea, byteValue, bitValue, state)
                 .compose(RxUtil.<HighClosetResponse>rxSchedulerHelper())
@@ -89,6 +89,7 @@ public class MainRepository extends BaseRepository {
     }
 
     public void requestHighClosetData(final MutableLiveData<Integer> statusValue, final OnDataCallback<HighClosetResponse> onDataCallback) {
+//        statusValue.postValue(Constants.STAUTS_LOADING);
 
         addSubscribe(api.requestHighAll()
                 .compose(RxUtil.<HighClosetResponse>rxSchedulerHelper())
