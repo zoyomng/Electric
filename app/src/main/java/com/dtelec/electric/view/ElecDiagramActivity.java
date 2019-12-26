@@ -37,7 +37,6 @@ public class ElecDiagramActivity extends BaseActivity<MainViewModel> {
     public void initData() {
         ActivityElecDiagramBinding binding = (ActivityElecDiagramBinding) this.dataBinding;
         binding.setClicklistener(this);
-        viewModel.initHighClosetLayoutFragment();
     }
 
     @Override
@@ -48,6 +47,12 @@ public class ElecDiagramActivity extends BaseActivity<MainViewModel> {
     @Override
     protected void onStatusRefresh() {
         super.onStatusRefresh();
+        viewModel.initHighClosetLayoutFragment();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         viewModel.initHighClosetLayoutFragment();
     }
 }

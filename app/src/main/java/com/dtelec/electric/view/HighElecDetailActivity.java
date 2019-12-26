@@ -19,6 +19,7 @@ import com.dtelec.electric.viewModel.MainViewModel;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.android.FragmentEvent;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -44,6 +45,10 @@ public class HighElecDetailActivity extends BaseActivity<MainViewModel> implemen
         return BR.viewModel;
     }
 
+    @Override
+    protected int getContentLayoutId() {
+        return R.id.contentLayout;
+    }
 
     @Override
     public void initData() {
@@ -77,48 +82,51 @@ public class HighElecDetailActivity extends BaseActivity<MainViewModel> implemen
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        switch (v.getId()) {
-            case R.id.tv_breaker2:
-                //断容器合闸分闸
+        try {
+            switch (v.getId()) {
+                case R.id.tv_breaker2:
+                    //断容器合闸分闸
 //                if (viewModel.highClosetBean.getValue().testStation){
 //                    RadioDialogFragment.newInstance(viewModel.highClosetBean, viewModel.highClosetBean.getValue().breakerBitValue).show(getSupportFragmentManager(), "dialog");
 //                    return;
 //                }
-                if (viewModel.highClosetBean.getValue().groundKnifeOpen) {
-                    //接地刀分闸
-                    RadioDialogFragment.newInstance(viewModel.highClosetBean, viewModel.highClosetBean.getValue().breakerBitValue).show(getSupportFragmentManager(), "dialog");
-                } else {
-                    Toasty.error(HighElecDetailActivity.this, "断路器合闸之前请确保接地刀处于分闸状态", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.tv_handcart:
-                //手车
+                    if (Objects.requireNonNull(viewModel.highClosetBean.getValue()).groundKnifeOpen) {
+                        //接地刀分闸
+                        RadioDialogFragment.newInstance(viewModel.highClosetBean, viewModel.highClosetBean.getValue().breakerBitValue).show(getSupportFragmentManager(), "dialog");
+                    } else {
+                        Toasty.error(HighElecDetailActivity.this, "断路器合闸之前请确保接地刀处于分闸状态", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                case R.id.tv_handcart:
+                    //手车
+                    if (Objects.requireNonNull(viewModel.highClosetBean.getValue()).breaker) {
+                        Toasty.error(HighElecDetailActivity.this, "手车摇入摇出之前请确保断路器处于分闸状态", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (viewModel.highClosetBean.getValue().groundKnifeOpen) {
+                        //接地刀合闸
+                        RadioDialogFragment.newInstance(viewModel.highClosetBean, viewModel.highClosetBean.getValue().handcartBitValue).show(getSupportFragmentManager(), "dialog");
+                    } else {
+                        Toasty.error(HighElecDetailActivity.this, "手车摇入摇出之前请确保接地刀处于分闸状态", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                case R.id.tv_knife:
+                    //接地刀
+                    if (Objects.requireNonNull(viewModel.highClosetBean.getValue()).testStation) {
+                        RadioDialogFragment.newInstance(viewModel.highClosetBean, viewModel.highClosetBean.getValue().knifeBitValue).show(getSupportFragmentManager(), "dialog");
+                    } else {
+                        Toasty.error(HighElecDetailActivity.this, "接地刀合闸之前请确保断路器处于试验位置", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
 
-                if (viewModel.highClosetBean.getValue().breaker) {
-                    Toasty.error(HighElecDetailActivity.this, "手车摇入摇出之前请确保断路器处于分闸状态", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (viewModel.highClosetBean.getValue().groundKnifeOpen) {
-                    //接地刀合闸
-                    RadioDialogFragment.newInstance(viewModel.highClosetBean, viewModel.highClosetBean.getValue().handcartBitValue).show(getSupportFragmentManager(), "dialog");
-                } else {
-                    Toasty.error(HighElecDetailActivity.this, "手车摇入摇出之前请确保接地刀处于分闸状态", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.tv_knife:
-                //接地刀
-                if (viewModel.highClosetBean.getValue().testStation) {
-                    RadioDialogFragment.newInstance(viewModel.highClosetBean, viewModel.highClosetBean.getValue().knifeBitValue).show(getSupportFragmentManager(), "dialog");
-                } else {
-                    Toasty.error(HighElecDetailActivity.this, "接地刀合闸之前请确保断路器处于试验位置", Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.tv_diagram:
-                startActivity(new Intent(HighElecDetailActivity.this, ElecDiagramActivity.class));
-                break;
-            default:
-                break;
+                case R.id.tv_diagram:
+                    startActivity(new Intent(HighElecDetailActivity.this, ElecDiagramActivity.class));
+                    break;
+                default:
+                    break;
+            }
+        } catch (NullPointerException e) {
+            Toasty.info(HighElecDetailActivity.this, "请数据刷新后再尝试操作").show();
         }
     }
 
