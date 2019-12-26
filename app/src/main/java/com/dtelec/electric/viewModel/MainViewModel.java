@@ -90,8 +90,6 @@ public class MainViewModel extends BaseViewModel<MainRepository> {
 
                         if (!itemBean.operation) {
                             //脱扣->分闸
-                            itemBean.bitValue = 1;
-
                             showDialog.setValue(itemBean);
                             return;
                         }
@@ -150,7 +148,11 @@ public class MainViewModel extends BaseViewModel<MainRepository> {
         itemBean1.workStation = lowClosetResponse.workStation11;
         itemBean1.remote = lowClosetResponse.remote11;
         //op分闸
-        itemBean1.bitValue = lowClosetResponse.breaker11 ? 1:0;
+        if(!lowClosetResponse.operation11){
+            itemBean1.bitValue = 1;
+        }else {
+            itemBean1.bitValue = lowClosetResponse.breaker11 ? 1:0;
+        }
 
         ItemBean itemBean2 = list.get(1);
         itemBean2.breaker = lowClosetResponse.breaker12;
@@ -158,7 +160,11 @@ public class MainViewModel extends BaseViewModel<MainRepository> {
         itemBean2.workStation = lowClosetResponse.workStation12;
         itemBean2.remote = lowClosetResponse.remote12;
         //op分闸 0->合闸
-        itemBean2.bitValue = lowClosetResponse.breaker12 ? 1:0;
+        if(!lowClosetResponse.operation12){
+            itemBean1.bitValue = 1;
+        }else {
+            itemBean2.bitValue = lowClosetResponse.breaker12 ? 1:0;
+        }
 
         ItemBean itemBean3 = list.get(2);
         itemBean3.breaker = lowClosetResponse.breaker13;
@@ -166,7 +172,11 @@ public class MainViewModel extends BaseViewModel<MainRepository> {
         itemBean3.workStation = lowClosetResponse.workStation13;
         itemBean3.remote = lowClosetResponse.remote13;
         //op分闸
-        itemBean3.bitValue = lowClosetResponse.breaker13 ? 1:0;
+        if(!lowClosetResponse.operation13){
+            itemBean1.bitValue = 1;
+        }else {
+            itemBean3.bitValue = lowClosetResponse.breaker13 ? 1:0;
+        }
 
         ItemBean itemBean4 = list.get(3);
         itemBean4.breaker = lowClosetResponse.breaker14;
@@ -174,7 +184,11 @@ public class MainViewModel extends BaseViewModel<MainRepository> {
         itemBean4.workStation = lowClosetResponse.workStation14;
         itemBean4.remote = lowClosetResponse.remote14;
         //op分闸
-        itemBean4.bitValue = lowClosetResponse.breaker14 ? 1:0;
+        if(!lowClosetResponse.operation14){
+            itemBean1.bitValue = 1;
+        }else {
+            itemBean4.bitValue = lowClosetResponse.breaker14 ? 1:0;
+        }
 
         baseAdapter.notifyDataSetChanged();
     }

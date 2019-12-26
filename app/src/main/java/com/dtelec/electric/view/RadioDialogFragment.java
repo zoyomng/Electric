@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
 
+import androidx.lifecycle.MutableLiveData;
 import com.dtelec.core.common.widget.dialog.BaseDialogFragment;
 import com.dtelec.core.mvvm.utils.ScreenSizeUtil;
 import com.dtelec.electric.R;
@@ -17,6 +18,7 @@ import com.dtelec.electric.model.bean.HighClosetResponse;
 
 /**
  * Copyright (c) dtelec, Inc All Rights Reserved.
+ * 合闸之前接地刀必须是断开的
  */
 public class RadioDialogFragment extends BaseDialogFragment {
 
@@ -24,7 +26,7 @@ public class RadioDialogFragment extends BaseDialogFragment {
     private RadioButton radioButton1;
     private RadioButton radioButton2;
 
-    public static RadioDialogFragment newInstance(int bitVaule) {
+    public static RadioDialogFragment newInstance(MutableLiveData<HighClosetResponse> highClosetBean, int bitVaule) {
         RadioDialogFragment dialogFragment = new RadioDialogFragment();
         Bundle bundle = new Bundle();
 //        bundle.putCharSequence("title", title);
