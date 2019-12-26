@@ -22,20 +22,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
             android:layout_width="195dp"
             android:layout_height="475dp"
-            android:paddingTop="40dp"
-            android:paddingStart="10dp"
-            android:paddingBottom="30dp"
-            android:background="@drawable/bg_electric_closet"
-            app:adapter="@{viewModel.baseAdapter}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_closet" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="195dp"
+                android:layout_height="475dp"
+                android:background="@drawable/bg_electric_closet"
+                android:paddingStart="10dp"
+                android:paddingTop="40dp"
+                android:paddingBottom="30dp"
+                app:adapter="@{viewModel.baseAdapter}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_closet" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.lifecycle.Observer;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.dtelec.core.common.constants.Constants;
 import com.dtelec.core.mvvm.base.BaseActivity;
 import com.dtelec.electric.BR;
 import com.dtelec.electric.R;
@@ -15,6 +19,8 @@ import com.dtelec.electric.viewModel.MainViewModel;
  */
 public class HighElecDetailActivity extends BaseActivity<MainViewModel> implements RadioDialogFragment.DialogHandler {
 
+
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected int getLayoutId(Bundle savedInstanceState) {
@@ -35,6 +41,23 @@ public class HighElecDetailActivity extends BaseActivity<MainViewModel> implemen
     public void initViewObservable() {
         ActivityDetailHighElecBinding dataBinding = (ActivityDetailHighElecBinding) this.dataBinding;
         dataBinding.setClickListener(this);
+
+        swipeRefreshLayout = dataBinding.swipeRefreshLayout;
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                viewModel.initHighClosetLayoutFragment();
+            }
+        });
+
+        viewModel.statusValue.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                if (Constants.STAUTS_LOADING != integer) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            }
+        });
     }
 
     @Override
@@ -63,8 +86,14 @@ public class HighElecDetailActivity extends BaseActivity<MainViewModel> implemen
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onStatusRefresh() {
+        super.onStatusRefresh();
+        viewModel.initHighClosetLayoutFragment();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         viewModel.initHighClosetLayoutFragment();
     }
 

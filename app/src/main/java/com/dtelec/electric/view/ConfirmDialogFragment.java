@@ -74,8 +74,8 @@ public class ConfirmDialogFragment extends BaseDialogFragment {
 
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
 
         Window window = getDialog().getWindow();
 //        window.setBackgroundDrawable(new ColorDrawable(0x80000000));

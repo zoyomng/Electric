@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.lifecycle.Observer;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.dtelec.core.common.constants.Constants;
 import com.dtelec.core.mvvm.base.BaseFragment;
 import com.dtelec.electric.BR;
 import com.dtelec.electric.R;
@@ -15,6 +19,8 @@ import com.dtelec.electric.viewModel.MainViewModel;
  */
 public class HighClosetLayoutFragment extends BaseFragment<MainViewModel> implements View.OnClickListener, ConfirmDialogFragment.DialogHandler {
 
+
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected int getViewModelId() {
@@ -37,6 +43,22 @@ public class HighClosetLayoutFragment extends BaseFragment<MainViewModel> implem
         FragmentHighClosetLayoutBinding dataBinding = (FragmentHighClosetLayoutBinding) this.dataBinding;
         dataBinding.setClickListener(this);
 
+        swipeRefreshLayout = dataBinding.swipeRefreshLayout;
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                viewModel.initHighClosetLayoutFragment();
+            }
+        });
+
+        viewModel.statusValue.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                if (Constants.STAUTS_LOADING != integer) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            }
+        });
     }
 
     @Override
@@ -49,8 +71,8 @@ public class HighClosetLayoutFragment extends BaseFragment<MainViewModel> implem
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         viewModel.initHighClosetLayoutFragment();
     }
 }

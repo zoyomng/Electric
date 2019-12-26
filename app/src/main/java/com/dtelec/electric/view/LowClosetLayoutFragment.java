@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.lifecycle.Observer;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.dtelec.core.common.constants.Constants;
 import com.dtelec.core.mvvm.base.BaseFragment;
 import com.dtelec.electric.BR;
 import com.dtelec.electric.R;
@@ -20,6 +22,7 @@ public class LowClosetLayoutFragment extends BaseFragment<MainViewModel> impleme
 
 
     private ItemBean itemBean;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected int getViewModelId() {
@@ -41,6 +44,23 @@ public class LowClosetLayoutFragment extends BaseFragment<MainViewModel> impleme
 
         FragmentLowClosetLayoutBinding dataBinding = (FragmentLowClosetLayoutBinding) this.dataBinding;
         dataBinding.setClickListener(this);
+
+        swipeRefreshLayout = dataBinding.swipeRefreshLayout;
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                viewModel.request();
+            }
+        });
+
+        viewModel.statusValue.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                if (Constants.STAUTS_LOADING != integer) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            }
+        });
         viewModel.showDialog.observe(this, new Observer<ItemBean>() {
             @Override
             public void onChanged(ItemBean itemBean) {
@@ -64,8 +84,8 @@ public class LowClosetLayoutFragment extends BaseFragment<MainViewModel> impleme
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         viewModel.request();
     }
 }
