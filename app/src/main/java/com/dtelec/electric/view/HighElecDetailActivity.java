@@ -63,6 +63,12 @@ public class HighElecDetailActivity extends BaseActivity<MainViewModel> implemen
     }
 
     @Override
+    protected void onStatusRefresh() {
+        super.onStatusRefresh();
+        viewModel.initHighClosetLayoutFragment();
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         viewModel.initHighClosetLayoutFragment();

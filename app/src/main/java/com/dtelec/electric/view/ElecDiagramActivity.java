@@ -44,4 +44,10 @@ public class ElecDiagramActivity extends BaseActivity<MainViewModel> {
     public void initViewObservable() {
 
     }
+
+    @Override
+    protected void onStatusRefresh() {
+        super.onStatusRefresh();
+        viewModel.initHighClosetLayoutFragment();
+    }
 }

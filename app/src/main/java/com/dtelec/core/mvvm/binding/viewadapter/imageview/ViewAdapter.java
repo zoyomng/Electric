@@ -25,11 +25,11 @@ public class ViewAdapter {
 
     @BindingAdapter(value = {"operation", "breaker"}, requireAll = true)
     public static void setImageUri(ImageView imageView, boolean operation, boolean breaker) {
-        if (operation) {
+        if (!operation) {
             imageView.setImageResource(R.drawable.ic_switch_error);
             return;
         }
-        imageView.setImageResource(breaker ? R.drawable.ic_switch_off : R.drawable.ic_switch_on);
+        imageView.setImageResource(breaker ? R.drawable.ic_switch_on : R.drawable.ic_switch_off);
     }
 
     @BindingAdapter(value = {"state1", "drawableRes1", "state2", "drawableRes2"}, requireAll = true)
