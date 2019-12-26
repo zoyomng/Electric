@@ -23,8 +23,8 @@ public class ConfirmDialogFragment extends BaseDialogFragment {
     public static ConfirmDialogFragment newInstance(ItemBean itemBean) {
         ConfirmDialogFragment dialogFragment = new ConfirmDialogFragment();
         Bundle bundle = new Bundle();
-        bundle.putCharSequence("title", "您确认要" + (itemBean.bitValue == 0 ? "打开" : "闭合" + "馈电回路") + itemBean.index + "闸门？");
-        bundle.putBoolean("isOpen", itemBean.bitValue == 0);
+        bundle.putCharSequence("title", "您确认要" + (itemBean.bitValue == 0 ? "合闸" : "分闸"));
+        bundle.putBoolean("isOpen", itemBean.bitValue != 0);
         dialogFragment.setArguments(bundle);
         return dialogFragment;
     }

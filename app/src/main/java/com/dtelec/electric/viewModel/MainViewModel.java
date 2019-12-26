@@ -3,9 +3,11 @@ package com.dtelec.electric.viewModel;
 import android.app.Application;
 import android.view.View;
 
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.dtelec.core.common.widget.toast.Toasty;
 import com.dtelec.core.mvvm.base.BaseViewModel;
 import com.dtelec.core.mvvm.base.OnDataCallback;
 import com.dtelec.core.mvvm.binding.adapter.recyclerview.BaseAdapter;
@@ -85,22 +87,31 @@ public class MainViewModel extends BaseViewModel<MainRepository> {
                         //读
                         request();
                         //写
-                        if (itemBean.bitValue == 0) {
-                            //合闸
-                            //在工作位置，在远程，没有脱扣，没有合闸，就可以合闸。
-//                            if (!itemBean.remote && itemBean.workStation && !itemBean.operation && !itemBean.breaker) {
+
+                        if (!itemBean.operation) {
+                            //脱扣->分闸
+                            itemBean.bitValue = 1;
+
                             showDialog.setValue(itemBean);
-//                            } else {
-//                                Toasty.warning(getApplication(), "当前工作状态不能进行合闸操作", Toast.LENGTH_SHORT).show();
-//                            }
-                        } else {
-                            //分闸
+                            return;
+                        }
+
+                        if (itemBean.breaker) {
+                            //合闸->分闸
                             //在工作位置，在远程，合闸或者脱扣状态，就可以分闸。
-//                            if (!itemBean.remote && itemBean.workStation && (itemBean.operation || itemBean.breaker)) {
-                            showDialog.setValue(itemBean);
-//                            } else {
-//                                Toasty.warning(getApplication(), "当前工作状态不能进行分闸操作", Toast.LENGTH_SHORT).show();
-//                            }
+                            if (itemBean.remote && itemBean.workStation && (itemBean.operation || itemBean.breaker)) {
+                                showDialog.setValue(itemBean);
+                            } else {
+                                Toasty.warning(getApplication(), "当前工作状态不能进行分闸操作", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            //分闸->合闸
+                            //在工作位置，在远程，没有脱扣，没有合闸，就可以合闸。
+                            if (itemBean.remote && itemBean.workStation && !itemBean.breaker) {
+                                showDialog.setValue(itemBean);
+                            } else {
+                                Toasty.warning(getApplication(), "当前工作状态不能进行合闸操作", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 });
@@ -138,24 +149,32 @@ public class MainViewModel extends BaseViewModel<MainRepository> {
         itemBean1.operation = lowClosetResponse.operation11;
         itemBean1.workStation = lowClosetResponse.workStation11;
         itemBean1.remote = lowClosetResponse.remote11;
+        //op分闸
+        itemBean1.bitValue = lowClosetResponse.breaker11 ? 1:0;
 
         ItemBean itemBean2 = list.get(1);
         itemBean2.breaker = lowClosetResponse.breaker12;
         itemBean2.operation = lowClosetResponse.operation12;
         itemBean2.workStation = lowClosetResponse.workStation12;
         itemBean2.remote = lowClosetResponse.remote12;
+        //op分闸 0->合闸
+        itemBean2.bitValue = lowClosetResponse.breaker12 ? 1:0;
 
         ItemBean itemBean3 = list.get(2);
         itemBean3.breaker = lowClosetResponse.breaker13;
         itemBean3.operation = lowClosetResponse.operation13;
         itemBean3.workStation = lowClosetResponse.workStation13;
         itemBean3.remote = lowClosetResponse.remote13;
+        //op分闸
+        itemBean3.bitValue = lowClosetResponse.breaker13 ? 1:0;
 
         ItemBean itemBean4 = list.get(3);
         itemBean4.breaker = lowClosetResponse.breaker14;
         itemBean4.operation = lowClosetResponse.operation14;
         itemBean4.workStation = lowClosetResponse.workStation14;
         itemBean4.remote = lowClosetResponse.remote14;
+        //op分闸
+        itemBean4.bitValue = lowClosetResponse.breaker14 ? 1:0;
 
         baseAdapter.notifyDataSetChanged();
     }

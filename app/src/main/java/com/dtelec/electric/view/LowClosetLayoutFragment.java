@@ -88,4 +88,10 @@ public class LowClosetLayoutFragment extends BaseFragment<MainViewModel> impleme
         super.onResume();
         viewModel.request();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        viewModel.request();
+    }
 }
