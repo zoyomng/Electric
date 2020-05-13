@@ -24,7 +24,7 @@ public class MainRepository extends BaseRepository {
                 .subscribeWith(new RxSubscriber<LowClosetResponse>() {
                     @Override
                     protected void onNoNetwork() {
-                        statusValue.setValue(Constants.STATUS_NETWORK_ERROR);
+                        statusValue.postValue(Constants.STATUS_NETWORK_ERROR);
                     }
 
                     @Override
@@ -35,7 +35,7 @@ public class MainRepository extends BaseRepository {
 
                     @Override
                     protected void onFailure(String message) {
-                        statusValue.setValue(Constants.STATUS_SERVER_ERROR);
+                        statusValue.postValue(Constants.STATUS_SERVER_ERROR);
                     }
                 }));
     }
@@ -48,7 +48,7 @@ public class MainRepository extends BaseRepository {
                 .subscribeWith(new RxSubscriber<LowClosetResponse>() {
                     @Override
                     protected void onNoNetwork() {
-                        statusValue.setValue(Constants.STATUS_NETWORK_ERROR);
+                        statusValue.postValue(Constants.STATUS_NETWORK_ERROR);
                     }
 
                     @Override
@@ -59,7 +59,7 @@ public class MainRepository extends BaseRepository {
 
                     @Override
                     protected void onFailure(String message) {
-                        statusValue.setValue(Constants.STATUS_SERVER_ERROR);
+                        statusValue.postValue(Constants.STATUS_SERVER_ERROR);
                     }
                 }));
     }
@@ -72,7 +72,7 @@ public class MainRepository extends BaseRepository {
                 .subscribeWith(new RxSubscriber<HighClosetResponse>() {
                     @Override
                     protected void onNoNetwork() {
-                        statusValue.setValue(Constants.STATUS_NETWORK_ERROR);
+                        statusValue.postValue(Constants.STATUS_NETWORK_ERROR);
                     }
 
                     @Override
@@ -83,7 +83,7 @@ public class MainRepository extends BaseRepository {
 
                     @Override
                     protected void onFailure(String message) {
-                        statusValue.setValue(Constants.STATUS_SERVER_ERROR);
+                        statusValue.postValue(Constants.STATUS_SERVER_ERROR);
                     }
                 }));
     }
@@ -96,7 +96,7 @@ public class MainRepository extends BaseRepository {
                 .subscribeWith(new RxSubscriber<HighClosetResponse>() {
                     @Override
                     protected void onNoNetwork() {
-                        statusValue.setValue(Constants.STATUS_NETWORK_ERROR);
+                        statusValue.postValue(Constants.STATUS_NETWORK_ERROR);
                     }
 
                     @Override
@@ -107,7 +107,7 @@ public class MainRepository extends BaseRepository {
 
                     @Override
                     protected void onFailure(String message) {
-                        statusValue.setValue(Constants.STATUS_SERVER_ERROR);
+                        statusValue.postValue(Constants.STATUS_SERVER_ERROR);
                     }
                 }));
     }

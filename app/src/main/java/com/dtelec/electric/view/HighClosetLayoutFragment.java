@@ -95,6 +95,8 @@ public class HighClosetLayoutFragment extends BaseFragment<MainViewModel> implem
                     @Override
                     public void accept(Long aLong) throws Exception {
                         viewModel.initHighClosetLayoutFragment();
+                        System.out.println("========HighClosetLayoutFragment================");
+
                     }
                 });
     }

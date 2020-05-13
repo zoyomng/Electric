@@ -107,6 +107,8 @@ public class LowClosetLayoutFragment extends BaseFragment<MainViewModel> impleme
                     @Override
                     public void accept(Long aLong) throws Exception {
                         viewModel.request();
+                        System.out.println("========LowClosetLayoutFragment================");
+
                     }
                 });
     }

@@ -19,6 +19,7 @@ import com.dtelec.electric.viewModel.MainViewModel;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.android.FragmentEvent;
 
+import java.sql.SQLOutput;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -126,7 +127,7 @@ public class HighElecDetailActivity extends BaseActivity<MainViewModel> implemen
                     break;
             }
         } catch (NullPointerException e) {
-            Toasty.info(HighElecDetailActivity.this, "请数据刷新后再尝试操作").show();
+            Toasty.info(HighElecDetailActivity.this, "请在数据刷新后再尝试操作").show();
         }
     }
 
@@ -150,6 +151,7 @@ public class HighElecDetailActivity extends BaseActivity<MainViewModel> implemen
                     @Override
                     public void accept(Long aLong) throws Exception {
                         viewModel.initHighClosetLayoutFragment();
+                        System.out.println("========HighElecDetailActivity===========");
                     }
                 });
     }
